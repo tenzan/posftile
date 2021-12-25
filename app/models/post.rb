@@ -4,4 +4,6 @@ class Post < ApplicationRecord
   has_rich_text :body
 
   broadcasts_to :conversation
+
+  validates :body, presence: true
 end
