@@ -8,3 +8,8 @@
 
   <%= button_to "Destroy this conversation", @conversation, method: :delete %>
 </div>
+
+<%= turbo_stream_from @conversation %>
+<div id="posts">
+  <%= render @posts %>
+</div>
