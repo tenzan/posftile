@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 
 		respond_to do |format|
 		  if @post.save
-		  	# Send an email
+		  	ReplyJob.perform_later(@post)
 		  	format.turbo_stream { render turbo_stream: turbo_stream.replace("form", partial: "posts/form", locals: { conversation: @conversation, post: Post.new } ) }
 		  else
 			format.turbo_stream { render turbo_stream: turbo_stream.replace("form", partial: "posts/form", locals: { conversation: @conversation, post: @post } ) }
